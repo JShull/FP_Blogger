@@ -1,0 +1,20 @@
+{
+    "name": "com.fuzzphyte.blogger.editor",
+    "rootNamespace": "FuzzPhyte.Blogger.Editor",
+    "references": [
+        "GUID:4cfc45c462946d84db10cb91c71a2020",
+        "GUID:b2274f1409ce26f40919f89f9d4f667c",
+        "GUID:8729f3cadef284ac4bc6fd994d431e7a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

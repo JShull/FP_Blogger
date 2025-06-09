@@ -1,0 +1,29 @@
+{
+    "name": "com.fuzzphyte.blogger",
+    "version": "0.1.0",
+    "displayName": "FP Blogger",
+    "description": "FP Blogger is a simple set of tools to help with video / audio / tele-prompt recording.",
+    "unity": "6000.1",
+    "unityRelease": "6f1",
+    "documentationUrl": "https://github.com/jshull/FP_Blogger/README.md",
+    "changelogUrl": "https://github.com/jshull/FP_Blogger/CHANGELOG.md",
+    "licensesUrl": "https://github.com/jshull/FP_Blogger/LICENSE.md",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/jshull/FP_Blogger.git"
+    },
+    "dependencies": {
+      "com.fuzzphyte.utility": "https://github.com/JShull/FP_Blogger.git",
+      "com.unity.textmeshpro": "3.0.9"
+    },
+    "keywords": [
+      "ScriptableObject",
+      "FuzzPhyte"
+    ],
+    "author": {
+      "name": "John Shull",
+      "email": "the.john.shull@gmail.com",
+      "url": "https://github.com/jshull"
+    },
+    "type": "tool"
+  }
