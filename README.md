@@ -1,8 +1,8 @@
 # FuzzPhyte Unity Tools
 
-## Dialogue
+## Blogger
 
-Dialogue is setup to do simple chaining of dialogue. Most current Unity based dialogue systems are usually overly complicated or are a little too simple. This currently meets right above simple with the ability to get more complex. Currently uses the UI Toolkit and procedurally instantiates UI elements from scriptable objects containing various dialogue needs. 
+Blogger is setup to help capture content and use Unity as a way to use the editor to support YouTube content, Podcast content, and Reddit Content.
 
 ## Setup & Design
 
