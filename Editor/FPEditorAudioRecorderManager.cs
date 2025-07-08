@@ -1,7 +1,5 @@
-﻿
-namespace FuzzPhyte.Blogger.Editor
+﻿namespace FuzzPhyte.Blogger.Editor
 {
-    using UnityEngine;
     using UnityEditor;
 
     [InitializeOnLoad]
@@ -12,7 +10,7 @@ namespace FuzzPhyte.Blogger.Editor
         static FPEditorAudioRecorderManager()
         {
             Instance = new FPEditorAudioRecorder();
-            UnityEngine.Debug.Log("FPEditorAudioRecorder initialized and held in memory.");
+            //UnityEngine.Debug.Log("FPEditorAudioRecorder initialized and held in memory.");
         }
     }
 }
