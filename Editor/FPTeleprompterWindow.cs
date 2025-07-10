@@ -31,7 +31,8 @@
         private bool overallRunning = false;
         private bool isWindowFocused = true;
         private bool isRecording = false;
-        private FPEditorAudioRecorder audioRecorder=>FPEditorAudioRecorderManager.Instance;
+        private bool autoScroll = false;
+        private FPEditorAudioRecorder audioRecorder => FPEditorAudioRecorderManager.Instance;
         [MenuItem("FuzzPhyte/Blogger/Teleprompter")]
         public static void ShowWindow() => GetWindow<FPTeleprompterWindow>("Teleprompter");
 
@@ -158,15 +159,26 @@
             textColor = EditorGUILayout.ColorField("Text Color", textColor);
             backgroundColor = EditorGUILayout.ColorField("BG Color", backgroundColor);
             InitStyles();
+            
             EditorGUILayout.EndHorizontal();
+            GUILayout.Space(8);
+            FP_Utility_Editor.DrawUILine(isRecording ? Color.red : FP_Utility_Editor.TextActiveColor);
+            EditorGUILayout.BeginHorizontal();
+            autoScroll=GUILayout.Toggle(autoScroll, "Auto Scroll?", GUILayout.Width(80));
+            EditorGUILayout.EndHorizontal();
+            GUILayout.Space(8);
             #endregion
             #region Markdown Text Body
-            
+
             if (GUILayout.Button("Load Markdown File"))
             {
-                string path = EditorUtility.OpenFilePanel("Select Markdown File", "", "md");
+
+                string lastPath = EditorPrefs.GetString("FP_Blogger_LastMarkdownPath", Application.dataPath);
+                string path = EditorUtility.OpenFilePanel("Select Markdown File", lastPath, "md");
                 if (!string.IsNullOrEmpty(path))
                 {
+                    string directory = Path.GetDirectoryName(path);
+                    EditorPrefs.SetString("FP_Blogger_LastMarkdownPath", directory);
                     string content = File.ReadAllText(path);
                     sections = FPMarkdownParser.ParseSections(content);
                     currentIndex = 0;
@@ -214,7 +226,7 @@
             Rect progressRect = GUILayoutUtility.GetRect(18, 18, "TextField");
             EditorGUI.ProgressBar(progressRect, progress, $"Progress: {currentIndex + 1}/{sections.Count}");
             GUILayout.Space(10);
-
+            
             TimeSpan sectionElapsed = DateTime.Now - sectionStartTime;
             TimeSpan overallElapsed = overallRunning ? (DateTime.Now - overallStartTime - totalPausedDuration) : (pauseStartTime - overallStartTime - totalPausedDuration);
 
@@ -223,14 +235,28 @@
             #endregion
             #region Timer UI
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Start"))
+            if (overallRunning)
             {
-                if (!overallRunning)
+                if (GUILayout.Button("Stop"))
                 {
-                    totalPausedDuration += DateTime.Now - pauseStartTime;
-                    overallRunning = true;
+                    if (overallRunning)
+                    {
+                        overallRunning = false;
+                    }
                 }
             }
+            else
+            {
+                if (GUILayout.Button("Start"))
+                {
+                    if (!overallRunning)
+                    {
+                        totalPausedDuration += DateTime.Now - pauseStartTime;
+                        overallRunning = true;
+                    }
+                }
+            }
+            
             if (GUILayout.Button("Pause"))
             {
                 if (overallRunning)
@@ -244,7 +270,8 @@
                 overallStartTime = DateTime.Now;
                 sectionStartTime = DateTime.Now;
                 totalPausedDuration = TimeSpan.Zero;
-                overallRunning = true;
+                currentIndex = 0;
+                overallRunning = false;
             }
             EditorGUILayout.EndHorizontal();
 

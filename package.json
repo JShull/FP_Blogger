@@ -13,9 +13,14 @@
       "url": "https://github.com/jshull/FP_Blogger.git"
     },
     "dependencies": {
-      "com.fuzzphyte.utility": "https://github.com/JShull/FP_Blogger.git",
       "com.unity.textmeshpro": "3.0.9"
     },
+    "samples":
+      {
+        "displayName": "Sample Markdown ",
+        "description": "Includes a simple sample markdown that this parser will read.",
+        "path": "Samples~/SamplesURP"
+      },
     "keywords": [
       "ScriptableObject",
       "FuzzPhyte"
