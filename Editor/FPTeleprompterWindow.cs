@@ -33,7 +33,7 @@
         private bool isRecording = false;
         private bool autoScroll = false;
         private FPEditorAudioRecorder audioRecorder => FPEditorAudioRecorderManager.Instance;
-        [MenuItem("FuzzPhyte/Blogger/Teleprompter")]
+        [MenuItem("FuzzPhyte/Blogger/Teleprompter", priority = FuzzPhyte.Utility.FP_UtilityData.ORDER_SUBMENU_LVL6)]
         public static void ShowWindow() => GetWindow<FPTeleprompterWindow>("Teleprompter");
 
         private void OnEnable()
